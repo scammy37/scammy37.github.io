@@ -688,10 +688,10 @@
         <a href="mailto:michael.zagame@gmail.com" class="clink"><i class="fa-solid fa-envelope"></i> michael.zagame@gmail.com</a>
         <a href="tel:+19734009579" class="clink"><i class="fa-solid fa-phone"></i> (973) 400-9579</a>
       </div>
-      <form class="contact-form" action="https://formsubmit.co/michael.zagame@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="New inquiry from michaelzagame.com">
-        <input type="hidden" name="_next" value="https://scammy37.github.io#contact">
-        <input type="hidden" name="_captcha" value="false">
+      <form class="contact-form" id="contactForm">
+        <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY">
+        <input type="hidden" name="subject" value="New inquiry from michaelzagame.com">
+        <input type="hidden" name="redirect" value="false">
         <div class="frow">
           <div class="ff"><label>First name</label><input type="text" name="first_name" placeholder="John" required></div>
           <div class="ff"><label>Last name</label><input type="text" name="last_name" placeholder="Smith"></div>
@@ -714,6 +714,7 @@
         </div>
         <div class="ff"><label>Message</label><textarea name="message" placeholder="Describe your project or what you're looking to accomplish…"></textarea></div>
         <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+        <p id="form-result" style="font-size:0.8rem;margin-top:0.5rem;display:none;"></p>
       </form>
     </div>
 
@@ -765,6 +766,30 @@
 </div>
 
 <script>
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    const result = document.getElementById('form-result');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending…';
+    const data = new FormData(this);
+    const res = await fetch('https://api.web3forms.com/submit', { method:'POST', body: data });
+    const json = await res.json();
+    result.style.display = 'block';
+    if (json.success) {
+      result.style.color = '#3fb950';
+      result.textContent = '✓ Message sent! I'll be in touch shortly.';
+      this.reset();
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Sent!';
+      setTimeout(() => { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message'; result.style.display='none'; }, 4000);
+    } else {
+      result.style.color = '#f85149';
+      result.textContent = 'Something went wrong — please email michael.zagame@gmail.com directly.';
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+    }
+  });
+
   document.querySelectorAll('.sb-link').forEach(l => {
     l.addEventListener('click', function() {
       document.querySelectorAll('.sb-link').forEach(x => x.classList.remove('active'));
