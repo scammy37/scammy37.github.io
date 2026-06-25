@@ -7,572 +7,425 @@
   <meta name="description" content="IT consulting, home automation, and smart home design services by Michael Zagame. Infrastructure, cybersecurity, Control4, Lutron, and more.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --blue: #2563eb;
-      --blue-dark: #1d4ed8;
-      --blue-light: #eff6ff;
-      --blue-mid: #bfdbfe;
-      --teal: #0d9488;
-      --teal-light: #f0fdfa;
-      --amber: #d97706;
-      --amber-light: #fffbeb;
-      --purple: #7c3aed;
-      --purple-light: #f5f3ff;
-      --green: #16a34a;
-      --green-light: #f0fdf4;
-      --dark: #0a0f1e;
-      --slate: #1e293b;
-      --text: #334155;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --bg: #f8fafc;
-      --white: #ffffff;
-      --shadow: 0 2px 8px rgba(0,0,0,0.07);
-      --radius: 8px;
-      --radius-sm: 6px;
-      --mono: 'JetBrains Mono', monospace;
+      --blue:#2563eb; --blue-d:#1d4ed8; --blue-l:#eff6ff; --blue-m:#bfdbfe;
+      --teal:#0d9488; --teal-l:#f0fdfa;
+      --amber:#d97706; --amber-l:#fffbeb;
+      --purple:#7c3aed; --purple-l:#f5f3ff;
+      --green:#16a34a; --green-l:#f0fdf4;
+      --slate:#1e293b; --text:#475569; --muted:#94a3b8;
+      --border:#e2e8f0; --bg:#f8fafc; --white:#fff;
+      --dark:#0f172a;
+      --r:8px; --r-sm:5px;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); line-height: 1.5; font-size: 14px; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;color:var(--text);background:var(--white);font-size:13px;line-height:1.5}
 
     /* NAV */
-    nav { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; height: 48px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-weight: 700; font-size: 0.95rem; color: #fff; text-decoration: none; letter-spacing: -0.01em; display: flex; align-items: center; gap: 0.4rem; }
-    .nav-logo span { color: #60a5fa; }
-    .nav-logo-mono { font-family: var(--mono); font-size: 0.7rem; color: #475569; padding: 0.1rem 0.4rem; background: rgba(255,255,255,0.05); border-radius: 3px; border: 1px solid rgba(255,255,255,0.08); }
-    .nav-links { display: flex; gap: 0.1rem; list-style: none; }
-    .nav-links a { font-size: 0.8rem; font-weight: 500; color: #94a3b8; text-decoration: none; padding: 0.3rem 0.65rem; border-radius: var(--radius-sm); transition: color 0.15s, background 0.15s; }
-    .nav-links a:hover { color: #e2e8f0; background: rgba(255,255,255,0.07); }
-    .nav-cta { background: var(--blue) !important; color: #fff !important; }
-    .nav-cta:hover { background: var(--blue-dark) !important; }
+    nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border)}
+    .nav-in{max-width:1200px;margin:0 auto;padding:0 1.25rem;height:44px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-weight:700;font-size:0.9rem;color:var(--slate);text-decoration:none}
+    .nav-logo span{color:var(--blue)}
+    .nav-links{display:flex;gap:2px;list-style:none}
+    .nav-links a{font-size:0.78rem;font-weight:500;color:var(--text);text-decoration:none;padding:0.3rem 0.6rem;border-radius:var(--r-sm);transition:background 0.1s,color 0.1s}
+    .nav-links a:hover{background:var(--bg);color:var(--slate)}
+    .nav-cta{background:var(--blue)!important;color:#fff!important}
+    .nav-cta:hover{background:var(--blue-d)!important}
+    @media(max-width:700px){.nav-links{display:none}}
 
     /* HERO */
-    .hero {
-      background: var(--dark);
-      color: var(--white);
-      padding: 2.75rem 1.5rem 2.5rem;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .hero-grid-bg {
-      position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-    }
-    .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem; }
-    @media (max-width: 768px) { .hero-inner { grid-template-columns: 1fr; } }
-    .hero-left {}
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.35);
-      color: #93c5fd; font-size: 0.7rem; font-weight: 600;
-      padding: 0.2rem 0.65rem; border-radius: 99px; margin-bottom: 0.875rem;
-      font-family: var(--mono); letter-spacing: 0.03em;
-    }
-    .hero-badge i { font-size: 0.6rem; }
-    .hero h1 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.65rem; color: var(--white); }
-    .hero h1 em { font-style: normal; color: #60a5fa; }
-    .hero > .hero-inner > .hero-left > p { font-size: 0.875rem; color: #94a3b8; max-width: 500px; margin-bottom: 1.25rem; line-height: 1.65; }
-    .hero-btns { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 600; padding: 0.5rem 1.1rem; border-radius: var(--radius-sm); text-decoration: none; transition: background 0.15s, box-shadow 0.15s; cursor: pointer; border: none; white-space: nowrap; }
-    .btn-primary { background: var(--blue); color: var(--white); }
-    .btn-primary:hover { background: var(--blue-dark); }
-    .btn-ghost { background: rgba(255,255,255,0.07); color: var(--white); border: 1px solid rgba(255,255,255,0.12); }
-    .btn-ghost:hover { background: rgba(255,255,255,0.12); }
-    .btn-outline { background: var(--white); color: var(--blue); border: 1px solid var(--blue); }
-    .btn-outline:hover { background: var(--blue-light); }
-    .hero-stats { margin-top: 1.75rem; display: flex; gap: 1.75rem; flex-wrap: wrap; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.07); }
-    .hero-stat strong { display: block; font-size: 1.3rem; font-weight: 700; color: var(--white); line-height: 1.1; }
-    .hero-stat span { font-size: 0.72rem; color: #64748b; font-weight: 500; font-family: var(--mono); }
-    .hero-right { display: flex; flex-direction: column; gap: 0.5rem; min-width: 200px; }
-    .hero-chip { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm); padding: 0.5rem 0.875rem; display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; color: #94a3b8; }
-    .hero-chip i { color: #60a5fa; width: 14px; text-align: center; font-size: 0.8rem; }
-    .hero-chip strong { color: #e2e8f0; font-weight: 500; }
+    .hero{background:linear-gradient(120deg,#0f172a 0%,#1e3a5f 100%);padding:2rem 1.25rem;position:relative;overflow:hidden}
+    .hero-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(96,165,250,0.08) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+    .hero-in{max-width:1200px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 220px;gap:1.5rem;align-items:center}
+    @media(max-width:700px){.hero-in{grid-template-columns:1fr}}
+    .hero-badge{display:inline-flex;align-items:center;gap:0.3rem;background:rgba(37,99,235,0.2);border:1px solid rgba(37,99,235,0.4);color:#93c5fd;font-size:0.68rem;font-weight:600;padding:0.18rem 0.6rem;border-radius:99px;margin-bottom:0.6rem;letter-spacing:0.04em}
+    .hero h1{font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:700;line-height:1.15;letter-spacing:-0.02em;color:#fff;margin-bottom:0.5rem}
+    .hero h1 em{font-style:normal;color:#60a5fa}
+    .hero p{font-size:0.82rem;color:#94a3b8;max-width:460px;margin-bottom:1rem;line-height:1.6}
+    .hero-btns{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.25rem}
+    .btn{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.78rem;font-weight:600;padding:0.42rem 0.9rem;border-radius:var(--r-sm);text-decoration:none;border:none;cursor:pointer;transition:background 0.12s}
+    .btn-primary{background:var(--blue);color:#fff}
+    .btn-primary:hover{background:var(--blue-d)}
+    .btn-ghost{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15)}
+    .btn-ghost:hover{background:rgba(255,255,255,0.14)}
+    .btn-outline{background:var(--white);color:var(--blue);border:1px solid var(--blue)}
+    .btn-outline:hover{background:var(--blue-l)}
+    .hero-stats{display:flex;gap:1.5rem;flex-wrap:wrap;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.07)}
+    .hero-stat strong{display:block;font-size:1.15rem;font-weight:700;color:#fff;line-height:1}
+    .hero-stat span{font-size:0.68rem;color:#64748b;font-weight:500}
+    .hero-chips{display:flex;flex-direction:column;gap:0.4rem}
+    .hero-chip{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r-sm);padding:0.4rem 0.75rem;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:#94a3b8}
+    .hero-chip i{color:#60a5fa;font-size:0.8rem;width:12px;text-align:center}
+    .hero-chip strong{color:#e2e8f0;font-weight:500;font-size:0.75rem}
 
     /* SECTIONS */
-    .section { padding: 2.5rem 1.5rem; }
-    .section-alt { background: var(--bg); }
-    .container { max-width: 1200px; margin: 0 auto; }
-    .section-header { margin-bottom: 1.5rem; }
-    .section-tag { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.4rem; font-family: var(--mono); }
-    .section-tag::before { content: '//'; color: #94a3b8; font-weight: 400; }
-    .section-header h2 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; color: var(--slate); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.4rem; }
-    .section-header p { font-size: 0.85rem; color: var(--muted); max-width: 540px; line-height: 1.6; }
+    .sec{padding:1.75rem 1.25rem}
+    .sec-alt{background:var(--bg)}
+    .wrap{max-width:1200px;margin:0 auto}
+    .sec-hd{margin-bottom:1rem}
+    .sec-tag{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:0.3rem;margin-bottom:0.25rem}
+    .sec-hd h2{font-size:1rem;font-weight:700;color:var(--slate);letter-spacing:-0.01em;margin-bottom:0.2rem}
+    .sec-hd p{font-size:0.8rem;color:var(--muted);max-width:520px;line-height:1.55}
 
-    /* SERVICE OVERVIEW */
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.875rem; }
-    .service-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; transition: box-shadow 0.2s, border-color 0.2s; text-decoration: none; color: inherit; display: block; }
-    .service-card:hover { box-shadow: var(--shadow); border-color: #cbd5e1; }
-    .service-icon-wrap { width: 34px; height: 34px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 0.95rem; margin-bottom: 0.65rem; }
-    .icon-blue { background: var(--blue-light); color: var(--blue); }
-    .icon-teal { background: var(--teal-light); color: var(--teal); }
-    .icon-amber { background: var(--amber-light); color: var(--amber); }
-    .icon-purple { background: var(--purple-light); color: var(--purple); }
-    .icon-green { background: var(--green-light); color: var(--green); }
-    .icon-slate { background: #f1f5f9; color: var(--slate); }
-    .service-card h3 { font-size: 0.875rem; font-weight: 600; color: var(--slate); margin-bottom: 0.25rem; }
-    .service-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+    /* ICON COLORS */
+    .ic{width:30px;height:30px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0}
+    .ic-blue{background:var(--blue-l);color:var(--blue)}
+    .ic-teal{background:var(--teal-l);color:var(--teal)}
+    .ic-amber{background:var(--amber-l);color:var(--amber)}
+    .ic-purple{background:var(--purple-l);color:var(--purple)}
+    .ic-green{background:var(--green-l);color:var(--green)}
+    .ic-slate{background:#f1f5f9;color:var(--slate)}
 
-    /* SMART HOME */
-    .smarthome-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
-    @media (max-width: 700px) { .smarthome-grid { grid-template-columns: 1fr; } }
-    .sh-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; transition: box-shadow 0.2s; }
-    .sh-card:hover { box-shadow: var(--shadow); }
-    .sh-card-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
-    .sh-icon { width: 30px; height: 30px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
-    .sh-card h3 { font-size: 0.875rem; font-weight: 600; color: var(--slate); }
-    .sh-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.65rem; }
-    .tag-row { display: flex; flex-wrap: wrap; gap: 0.3rem; }
-    .tag { font-size: 0.68rem; font-weight: 500; padding: 0.15rem 0.5rem; border-radius: 99px; background: var(--bg); border: 1px solid var(--border); color: var(--muted); font-family: var(--mono); }
-    .tag-blue { background: var(--blue-light); border-color: var(--blue-mid); color: var(--blue); }
+    /* CARD BASE */
+    .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:0.875rem 1rem;transition:box-shadow 0.15s,border-color 0.15s}
+    .card:hover{box-shadow:0 2px 12px rgba(0,0,0,0.07);border-color:#cbd5e1}
+    .sec-alt .card{background:var(--white)}
+
+    /* OVERVIEW GRID */
+    .grid-6{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0.625rem}
+    .overview-card{text-decoration:none;color:inherit}
+    .overview-card h3{font-size:0.8rem;font-weight:600;color:var(--slate);margin:0.5rem 0 0.2rem}
+    .overview-card p{font-size:0.75rem;color:var(--muted);line-height:1.5}
 
     /* PLATFORMS */
-    .platforms-strip { background: var(--dark); padding: 1.5rem 1.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
-    .platforms-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #475569; margin-bottom: 0.875rem; font-family: var(--mono); }
-    .platforms-logos { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; max-width: 960px; margin: 0 auto; }
-    .platform-pill { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: #64748b; font-size: 0.75rem; font-weight: 500; padding: 0.3rem 0.75rem; border-radius: 99px; display: flex; align-items: center; gap: 0.4rem; transition: color 0.15s, border-color 0.15s; }
-    .platform-pill:hover { color: #94a3b8; border-color: rgba(255,255,255,0.16); }
-    .platform-pill i { font-size: 0.8rem; }
+    .platforms{background:var(--dark);padding:0.875rem 1.25rem;text-align:center;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)}
+    .plat-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#475569;margin-bottom:0.6rem}
+    .plat-row{display:flex;flex-wrap:wrap;gap:0.4rem;justify-content:center;max-width:1000px;margin:0 auto}
+    .plat-pill{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:#64748b;font-size:0.72rem;font-weight:500;padding:0.22rem 0.65rem;border-radius:99px;display:flex;align-items:center;gap:0.35rem}
+    .plat-pill i{font-size:0.75rem}
 
-    /* IT SERVICES */
-    .it-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.875rem; }
-    .it-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; transition: box-shadow 0.2s, border-color 0.2s; }
-    .it-card:hover { box-shadow: var(--shadow); border-color: #cbd5e1; }
-    .it-card h3 { font-size: 0.875rem; font-weight: 600; color: var(--slate); margin: 0.5rem 0 0.3rem; }
-    .it-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
-    .it-card ul { margin-top: 0.5rem; list-style: none; }
-    .it-card ul li { font-size: 0.77rem; color: var(--muted); padding: 0.15rem 0 0.15rem 1rem; position: relative; }
-    .it-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--blue); }
+    /* SMART HOME / IT GRIDS */
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.625rem}
+    .sh-hd{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem}
+    .sh-hd h3{font-size:0.82rem;font-weight:600;color:var(--slate)}
+    .card p{font-size:0.76rem;color:var(--muted);line-height:1.55;margin-bottom:0.5rem}
+    .tags{display:flex;flex-wrap:wrap;gap:0.25rem}
+    .tag{font-size:0.65rem;font-weight:500;padding:0.12rem 0.45rem;border-radius:99px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+    .tag-b{background:var(--blue-l);border-color:var(--blue-m);color:var(--blue)}
+
+    /* HIGHLIGHT BOX */
+    .hl-box{background:var(--blue-l);border:1px solid var(--blue-m);border-left:3px solid var(--blue);border-radius:var(--r);padding:0.875rem 1rem;display:flex;align-items:center;gap:0.875rem;flex-wrap:wrap;margin-top:0.875rem}
+    .hl-box i{font-size:1.2rem;color:var(--blue);flex-shrink:0}
+    .hl-box h3{font-size:0.82rem;font-weight:700;color:var(--slate);margin-bottom:0.15rem}
+    .hl-box p{font-size:0.75rem;color:var(--muted);line-height:1.5}
+    .hl-text{flex:1;min-width:160px}
 
     /* PROCESS */
-    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 0.875rem; }
-    .step { text-align: center; padding: 1.25rem 1rem; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); }
-    .step-num { width: 32px; height: 32px; background: var(--blue); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; margin: 0 auto 0.65rem; font-family: var(--mono); }
-    .step h3 { font-size: 0.875rem; font-weight: 600; color: var(--slate); margin-bottom: 0.35rem; }
-    .step p { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
+    .grid-5{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:0.625rem}
+    .step{text-align:center}
+    .step-n{width:26px;height:26px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.72rem;margin:0 auto 0.5rem}
+    .step h3{font-size:0.8rem;font-weight:600;color:var(--slate);margin-bottom:0.2rem}
+    .step p{font-size:0.73rem;color:var(--muted);line-height:1.5}
 
-    /* WHY ME */
-    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 0.875rem; }
-    .why-card { padding: 1.1rem 1.25rem; border-radius: var(--radius); background: var(--white); border: 1px solid var(--border); }
-    .why-card i { font-size: 1rem; margin-bottom: 0.5rem; color: var(--blue); display: block; }
-    .why-card h3 { font-size: 0.875rem; font-weight: 600; color: var(--slate); margin-bottom: 0.25rem; }
-    .why-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
+    /* WHY */
+    .grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:0.625rem}
+    .why-card i{font-size:0.95rem;color:var(--blue);margin-bottom:0.4rem;display:block}
+    .why-card h3{font-size:0.8rem;font-weight:600;color:var(--slate);margin-bottom:0.2rem}
+    .why-card p{font-size:0.73rem;color:var(--muted);line-height:1.5}
 
     /* TESTIMONIALS */
-    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.875rem; }
-    .testimonial { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
-    .stars { color: #f59e0b; font-size: 0.75rem; margin-bottom: 0.5rem; }
-    .testimonial blockquote { font-size: 0.8rem; color: var(--text); line-height: 1.65; margin-bottom: 0.875rem; font-style: italic; }
-    .testimonial-author { display: flex; align-items: center; gap: 0.6rem; }
-    .avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; flex-shrink: 0; }
-    .av-blue { background: var(--blue-light); color: var(--blue); }
-    .av-teal { background: var(--teal-light); color: var(--teal); }
-    .av-purple { background: var(--purple-light); color: var(--purple); }
-    .testimonial-author .name { font-size: 0.8rem; font-weight: 600; color: var(--slate); }
-    .testimonial-author .role { font-size: 0.72rem; color: var(--muted); }
+    .grid-t{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0.625rem}
+    .stars{color:#f59e0b;font-size:0.7rem;margin-bottom:0.4rem}
+    .testimonial blockquote{font-size:0.76rem;color:var(--text);line-height:1.6;margin-bottom:0.625rem;font-style:italic}
+    .t-author{display:flex;align-items:center;gap:0.5rem}
+    .av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:700;flex-shrink:0}
+    .av-b{background:var(--blue-l);color:var(--blue)}
+    .av-t{background:var(--teal-l);color:var(--teal)}
+    .av-p{background:var(--purple-l);color:var(--purple)}
+    .t-name{font-size:0.77rem;font-weight:600;color:var(--slate)}
+    .t-role{font-size:0.7rem;color:var(--muted)}
 
     /* PRICING */
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; align-items: start; }
-    .pricing-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; position: relative; }
-    .pricing-card.featured { border: 2px solid var(--blue); }
-    .featured-badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: var(--blue); color: var(--white); font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.75rem; border-radius: 99px; letter-spacing: 0.04em; white-space: nowrap; font-family: var(--mono); }
-    .pricing-card h3 { font-size: 0.875rem; font-weight: 600; color: var(--slate); margin-bottom: 0.25rem; }
-    .pricing-card .price { font-size: 1.6rem; font-weight: 700; color: var(--slate); letter-spacing: -0.02em; margin-bottom: 0.2rem; line-height: 1.1; font-family: var(--mono); }
-    .pricing-card .price span { font-size: 0.8rem; font-weight: 400; color: var(--muted); }
-    .pricing-card .price-note { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.875rem; }
-    .pricing-card ul { list-style: none; margin-bottom: 1rem; }
-    .pricing-card ul li { font-size: 0.8rem; color: var(--text); padding: 0.25rem 0; display: flex; align-items: flex-start; gap: 0.4rem; }
-    .pricing-card ul li i { color: var(--green); font-size: 0.7rem; margin-top: 0.2rem; flex-shrink: 0; }
-    .btn-full { width: 100%; justify-content: center; font-size: 0.8rem; padding: 0.5rem; }
+    .grid-p{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.875rem;align-items:start}
+    .price-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;position:relative}
+    .price-card.feat{border:2px solid var(--blue)}
+    .feat-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:0.62rem;font-weight:700;padding:0.15rem 0.65rem;border-radius:99px;white-space:nowrap;letter-spacing:0.04em}
+    .price-card h3{font-size:0.82rem;font-weight:600;color:var(--slate);margin-bottom:0.2rem}
+    .price-num{font-size:1.4rem;font-weight:700;color:var(--slate);line-height:1;margin-bottom:0.15rem;letter-spacing:-0.02em}
+    .price-num span{font-size:0.78rem;font-weight:400;color:var(--muted)}
+    .price-note{font-size:0.7rem;color:var(--muted);margin-bottom:0.75rem}
+    .price-card ul{list-style:none;margin-bottom:0.875rem}
+    .price-card ul li{font-size:0.76rem;color:var(--text);padding:0.2rem 0;display:flex;align-items:flex-start;gap:0.35rem}
+    .price-card ul li i{color:var(--green);font-size:0.65rem;margin-top:0.2rem;flex-shrink:0}
+    .btn-full{width:100%;justify-content:center;font-size:0.76rem;padding:0.45rem}
 
     /* CONTACT */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
-    @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
-    .contact-info h3 { font-size: 1rem; font-weight: 700; color: var(--slate); margin-bottom: 0.5rem; }
-    .contact-info p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
-    .contact-links { display: flex; flex-direction: column; gap: 0.4rem; }
-    .contact-link { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--text); text-decoration: none; padding: 0.5rem 0.75rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); transition: background 0.15s, border-color 0.15s; }
-    .contact-link:hover { background: var(--blue-light); border-color: var(--blue-mid); color: var(--blue); }
-    .contact-link i { width: 16px; text-align: center; color: var(--blue); font-size: 0.85rem; }
-    .contact-form { display: flex; flex-direction: column; gap: 0.75rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-    .form-field { display: flex; flex-direction: column; gap: 0.3rem; }
-    .form-field label { font-size: 0.75rem; font-weight: 600; color: var(--slate); }
-    .form-field input, .form-field textarea, .form-field select { font-family: 'Inter', sans-serif; font-size: 0.82rem; padding: 0.5rem 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--white); color: var(--slate); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
-    .form-field input:focus, .form-field textarea:focus, .form-field select:focus { border-color: var(--blue); box-shadow: 0 0 0 2px rgba(37,99,235,0.1); }
-    .form-field textarea { resize: vertical; min-height: 90px; }
-    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+    .contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:2rem;align-items:start}
+    @media(max-width:700px){.contact-grid{grid-template-columns:1fr;gap:1.25rem}}
+    .contact-info h3{font-size:0.9rem;font-weight:700;color:var(--slate);margin-bottom:0.4rem}
+    .contact-info p{font-size:0.78rem;color:var(--muted);line-height:1.6;margin-bottom:0.875rem}
+    .contact-links{display:flex;flex-direction:column;gap:0.3rem}
+    .c-link{display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--text);text-decoration:none;padding:0.42rem 0.65rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);transition:background 0.12s,border-color 0.12s}
+    .c-link:hover{background:var(--blue-l);border-color:var(--blue-m);color:var(--blue)}
+    .c-link i{width:14px;text-align:center;color:var(--blue);font-size:0.8rem}
+    .contact-form{display:flex;flex-direction:column;gap:0.6rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem}
+    .ff{display:flex;flex-direction:column;gap:0.25rem}
+    .ff label{font-size:0.72rem;font-weight:600;color:var(--slate)}
+    .ff input,.ff textarea,.ff select{font-family:'Inter',sans-serif;font-size:0.78rem;padding:0.42rem 0.65rem;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--white);color:var(--slate);outline:none;transition:border-color 0.12s,box-shadow 0.12s}
+    .ff input:focus,.ff textarea:focus,.ff select:focus{border-color:var(--blue);box-shadow:0 0 0 2px rgba(37,99,235,0.1)}
+    .ff textarea{resize:vertical;min-height:80px}
+    @media(max-width:500px){.form-row{grid-template-columns:1fr}}
 
     /* FOOTER */
-    footer { background: var(--dark); color: #64748b; padding: 2rem 1.5rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.04); }
-    .footer-inner { max-width: 1200px; margin: 0 auto; }
-    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 1rem; }
-    @media (max-width: 700px) { .footer-top { grid-template-columns: 1fr 1fr; } }
-    .footer-brand .logo { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
-    .footer-brand .logo span { color: #60a5fa; }
-    .footer-brand p { font-size: 0.78rem; line-height: 1.6; max-width: 220px; }
-    .footer-col h4 { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #475569; margin-bottom: 0.6rem; font-family: var(--mono); }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
-    .footer-col ul a { font-size: 0.78rem; color: #64748b; text-decoration: none; transition: color 0.15s; }
-    .footer-col ul a:hover { color: #94a3b8; }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
-    .footer-bottom p { font-size: 0.75rem; }
-    .social-links { display: flex; gap: 0.4rem; }
-    .social-link { width: 28px; height: 28px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; color: #475569; text-decoration: none; font-size: 0.8rem; transition: color 0.15s, border-color 0.15s; }
-    .social-link:hover { color: #94a3b8; border-color: rgba(255,255,255,0.14); }
+    footer{background:var(--dark);color:#64748b;padding:1.5rem 1.25rem 1rem}
+    .ft-in{max-width:1200px;margin:0 auto}
+    .ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.05);margin-bottom:0.875rem}
+    @media(max-width:700px){.ft-top{grid-template-columns:1fr 1fr}}
+    .ft-brand .logo{font-size:0.875rem;font-weight:700;color:#fff;margin-bottom:0.4rem}
+    .ft-brand .logo span{color:#60a5fa}
+    .ft-brand p{font-size:0.73rem;line-height:1.55;max-width:210px}
+    .ft-col h4{font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569;margin-bottom:0.5rem}
+    .ft-col ul{list-style:none;display:flex;flex-direction:column;gap:0.3rem}
+    .ft-col ul a{font-size:0.73rem;color:#64748b;text-decoration:none;transition:color 0.12s}
+    .ft-col ul a:hover{color:#94a3b8}
+    .ft-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem}
+    .ft-bot p{font-size:0.7rem}
+    .soc{display:flex;gap:0.35rem}
+    .soc-a{width:26px;height:26px;border-radius:var(--r-sm);border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;color:#475569;text-decoration:none;font-size:0.78rem;transition:color 0.12s,border-color 0.12s}
+    .soc-a:hover{color:#94a3b8;border-color:rgba(255,255,255,0.14)}
 
-    /* MISC */
-    .highlight-box { background: var(--bg); border: 1px solid var(--blue-mid); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-    .highlight-box h3 { font-size: 0.875rem; font-weight: 700; color: var(--slate); margin-bottom: 0.2rem; }
-    .highlight-box p { font-size: 0.8rem; color: var(--muted); }
-    .highlight-box-icon { font-size: 1.4rem; color: var(--blue); flex-shrink: 0; }
-    .highlight-box-text { flex: 1; min-width: 180px; }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .section { padding: 2rem 1rem; }
-      .hero { padding: 2rem 1rem; }
-    }
+    /* IT CARD LIST */
+    .it-card h3{font-size:0.82rem;font-weight:600;color:var(--slate);margin:0.45rem 0 0.2rem}
+    .it-card ul{list-style:none;margin-top:0.4rem}
+    .it-card ul li{font-size:0.72rem;color:var(--muted);padding:0.12rem 0 0.12rem 0.875rem;position:relative}
+    .it-card ul li::before{content:'›';position:absolute;left:0;color:var(--blue);font-size:0.9rem;line-height:1}
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-inner">
+  <div class="nav-in">
     <a href="#" class="nav-logo">Michael<span>.</span>Zagame</a>
     <ul class="nav-links">
       <li><a href="#smart-home">Smart Home</a></li>
       <li><a href="#it-services">IT Services</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-inner">
-    <div class="hero-left">
+  <div class="hero-dots"></div>
+  <div class="hero-in">
+    <div>
       <div class="hero-badge"><i class="fa-solid fa-circle-check"></i> Available for new projects</div>
-      <h1>IT Consulting &amp;<br><em>Smart Home Design</em><br>Done Right.</h1>
-      <p>I help homeowners and small businesses modernize their technology — from intelligent home automation to secure IT infrastructure. One consultant. No subcontractors. Real results.</p>
+      <h1>IT Consulting &amp; <em>Smart Home Design</em> Done Right.</h1>
+      <p>I help homeowners and small businesses modernize their tech — from intelligent home automation to secure IT infrastructure. One consultant, no subcontractors, real results.</p>
       <div class="hero-btns">
         <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Free Consultation</a>
         <a href="#smart-home" class="btn btn-ghost"><i class="fa-solid fa-house-signal"></i> Services</a>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><strong>10+</strong><span>yrs_experience</span></div>
-        <div class="hero-stat"><strong>50+</strong><span>homes_automated</span></div>
-        <div class="hero-stat"><strong>100%</strong><span>satisfaction</span></div>
-        <div class="hero-stat"><strong>24/7</strong><span>remote_support</span></div>
+        <div class="hero-stat"><strong>10+</strong><span>Years Experience</span></div>
+        <div class="hero-stat"><strong>50+</strong><span>Homes Automated</span></div>
+        <div class="hero-stat"><strong>100%</strong><span>Satisfaction</span></div>
+        <div class="hero-stat"><strong>24/7</strong><span>Remote Support</span></div>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="hero-chip"><i class="fa-solid fa-house-signal"></i><div><strong>Smart Home</strong><br>Automation & Control</div></div>
+    <div class="hero-chips">
+      <div class="hero-chip"><i class="fa-solid fa-house-signal"></i><div><strong>Smart Home</strong><br>Automation &amp; Control</div></div>
       <div class="hero-chip"><i class="fa-solid fa-wifi"></i><div><strong>Networking</strong><br>UniFi / Wi-Fi 6E</div></div>
-      <div class="hero-chip"><i class="fa-solid fa-shield-halved"></i><div><strong>Security</strong><br>Cameras & Access</div></div>
+      <div class="hero-chip"><i class="fa-solid fa-shield-halved"></i><div><strong>Security</strong><br>Cameras &amp; Access</div></div>
       <div class="hero-chip"><i class="fa-solid fa-cloud"></i><div><strong>Cloud IT</strong><br>M365 / Azure / AWS</div></div>
-      <div class="hero-chip"><i class="fa-solid fa-code-branch"></i><div><strong>Home Assistant</strong><br>Open-source automation</div></div>
     </div>
   </div>
 </section>
 
-<!-- OVERVIEW SERVICES -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag"><i class="fa-solid fa-grid-2"></i> What I Do</div>
+<!-- OVERVIEW -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="sec-tag"><i class="fa-solid fa-grid-2"></i> Services</div>
       <h2>Full-Stack Technology Solutions</h2>
-      <p>From your front door to your server room, I design, install, and support the tech that keeps your home and business running seamlessly.</p>
+      <p>From your front door to your server room — design, install, and support.</p>
     </div>
-    <div class="services-grid">
-      <a href="#smart-home" class="service-card">
-        <div class="service-icon-wrap icon-teal"><i class="fa-solid fa-house-signal"></i></div>
+    <div class="grid-6">
+      <a href="#smart-home" class="card overview-card">
+        <div class="ic ic-teal"><i class="fa-solid fa-house-signal"></i></div>
         <h3>Smart Home Design</h3>
-        <p>Custom automation systems tailored to your lifestyle — lighting, climate, security, and entertainment, all unified.</p>
+        <p>Custom automation tailored to your lifestyle.</p>
       </a>
-      <a href="#smart-home" class="service-card">
-        <div class="service-icon-wrap icon-amber"><i class="fa-solid fa-lightbulb"></i></div>
+      <a href="#smart-home" class="card overview-card">
+        <div class="ic ic-amber"><i class="fa-solid fa-lightbulb"></i></div>
         <h3>Home Automation</h3>
-        <p>Scenes, schedules, and routines that make your home work for you without lifting a finger.</p>
+        <p>Scenes, schedules, and routines that work for you.</p>
       </a>
-      <a href="#smart-home" class="service-card">
-        <div class="service-icon-wrap icon-purple"><i class="fa-solid fa-shield-halved"></i></div>
+      <a href="#smart-home" class="card overview-card">
+        <div class="ic ic-purple"><i class="fa-solid fa-shield-halved"></i></div>
         <h3>Smart Security</h3>
-        <p>IP cameras, video doorbells, smart locks, and alarm integration — monitored from your phone.</p>
+        <p>Cameras, smart locks, and alarm integration.</p>
       </a>
-      <a href="#it-services" class="service-card">
-        <div class="service-icon-wrap icon-blue"><i class="fa-solid fa-network-wired"></i></div>
-        <h3>Network Infrastructure</h3>
-        <p>Enterprise-grade Wi-Fi, structured cabling, VLANs, and firewall setup for homes and offices.</p>
+      <a href="#it-services" class="card overview-card">
+        <div class="ic ic-blue"><i class="fa-solid fa-network-wired"></i></div>
+        <h3>Network &amp; Wi-Fi</h3>
+        <p>Enterprise-grade Wi-Fi and VLANs for home or office.</p>
       </a>
-      <a href="#it-services" class="service-card">
-        <div class="service-icon-wrap icon-green"><i class="fa-solid fa-cloud"></i></div>
-        <h3>Cloud & IT Consulting</h3>
-        <p>Microsoft 365, Google Workspace, cloud migrations, and strategic IT planning for small businesses.</p>
+      <a href="#it-services" class="card overview-card">
+        <div class="ic ic-green"><i class="fa-solid fa-cloud"></i></div>
+        <h3>Cloud &amp; IT Consulting</h3>
+        <p>M365, Google Workspace, and cloud migrations.</p>
       </a>
-      <a href="#it-services" class="service-card">
-        <div class="service-icon-wrap icon-slate"><i class="fa-solid fa-headset"></i></div>
+      <a href="#it-services" class="card overview-card">
+        <div class="ic ic-slate"><i class="fa-solid fa-headset"></i></div>
         <h3>Managed IT Support</h3>
-        <p>Ongoing helpdesk, remote monitoring, patches, and backups — so you never have to worry about downtime.</p>
+        <p>Proactive monitoring, patching, and helpdesk.</p>
       </a>
     </div>
   </div>
 </section>
 
-<!-- PLATFORMS STRIP -->
-<div class="platforms-strip">
-  <div class="platforms-label">Platforms &amp; Ecosystems I Work With</div>
-  <div class="platforms-logos">
-    <div class="platform-pill"><i class="fa-brands fa-apple"></i> Apple HomeKit</div>
-    <div class="platform-pill"><i class="fa-brands fa-google"></i> Google Home</div>
-    <div class="platform-pill"><i class="fa-brands fa-amazon"></i> Amazon Alexa</div>
-    <div class="platform-pill"><i class="fa-solid fa-sliders"></i> Control4</div>
-    <div class="platform-pill"><i class="fa-solid fa-sun"></i> Lutron</div>
-    <div class="platform-pill"><i class="fa-solid fa-wifi"></i> Ubiquiti / UniFi</div>
-    <div class="platform-pill"><i class="fa-solid fa-video"></i> Hikvision / Reolink</div>
-    <div class="platform-pill"><i class="fa-solid fa-lock"></i> Schlage / Yale</div>
-    <div class="platform-pill"><i class="fa-brands fa-microsoft"></i> Microsoft 365</div>
-    <div class="platform-pill"><i class="fa-brands fa-aws"></i> AWS</div>
-    <div class="platform-pill"><i class="fa-solid fa-code-branch"></i> Home Assistant</div>
-    <div class="platform-pill"><i class="fa-solid fa-fire"></i> Z-Wave / Zigbee</div>
+<!-- PLATFORMS -->
+<div class="platforms">
+  <div class="plat-label">Platforms &amp; Ecosystems</div>
+  <div class="plat-row">
+    <div class="plat-pill"><i class="fa-brands fa-apple"></i> Apple HomeKit</div>
+    <div class="plat-pill"><i class="fa-brands fa-google"></i> Google Home</div>
+    <div class="plat-pill"><i class="fa-brands fa-amazon"></i> Amazon Alexa</div>
+    <div class="plat-pill"><i class="fa-solid fa-sliders"></i> Control4</div>
+    <div class="plat-pill"><i class="fa-solid fa-sun"></i> Lutron</div>
+    <div class="plat-pill"><i class="fa-solid fa-wifi"></i> Ubiquiti UniFi</div>
+    <div class="plat-pill"><i class="fa-solid fa-video"></i> Hikvision / Reolink</div>
+    <div class="plat-pill"><i class="fa-solid fa-lock"></i> Schlage / Yale</div>
+    <div class="plat-pill"><i class="fa-brands fa-microsoft"></i> Microsoft 365</div>
+    <div class="plat-pill"><i class="fa-brands fa-aws"></i> AWS</div>
+    <div class="plat-pill"><i class="fa-solid fa-code-branch"></i> Home Assistant</div>
+    <div class="plat-pill"><i class="fa-solid fa-fire"></i> Z-Wave / Zigbee</div>
   </div>
 </div>
 
-<!-- SMART HOME DEEP DIVE -->
-<section class="section section-alt" id="smart-home">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag"><i class="fa-solid fa-house-signal"></i> Smart Home</div>
+<!-- SMART HOME -->
+<section class="sec sec-alt" id="smart-home">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="sec-tag"><i class="fa-solid fa-house-signal"></i> Smart Home</div>
       <h2>Intelligent Home Automation</h2>
-      <p>I design complete smart home systems from scratch — or upgrade what you already have — so everything works together, reliably, every time.</p>
+      <p>Complete systems from scratch — or upgrade what you already have.</p>
     </div>
-    <div class="smarthome-grid">
+    <div class="grid-3">
 
-      <div class="sh-card">
-        <div class="sh-card-header">
-          <div class="sh-icon icon-amber"><i class="fa-solid fa-lightbulb"></i></div>
-          <h3>Smart Lighting</h3>
-        </div>
-        <p>Transform every room with dynamic lighting scenes. Set the perfect ambiance for dinner, movie night, or working from home — and never forget to turn the lights off again. Supports dimming, color temperature, motion-triggered on/off, and sunrise/sunset scheduling.</p>
-        <div class="tag-row">
-          <span class="tag tag-blue">Lutron Caseta</span>
-          <span class="tag tag-blue">Philips Hue</span>
-          <span class="tag tag-blue">Leviton</span>
-          <span class="tag">Scene Control</span>
-          <span class="tag">Motion Sensors</span>
-        </div>
+      <div class="card">
+        <div class="sh-hd"><div class="ic ic-amber"><i class="fa-solid fa-lightbulb"></i></div><h3>Smart Lighting</h3></div>
+        <p>Dynamic scenes, dimming, motion-triggered on/off, and sunrise/sunset scheduling across every room.</p>
+        <div class="tags"><span class="tag tag-b">Lutron Caseta</span><span class="tag tag-b">Philips Hue</span><span class="tag">Leviton</span><span class="tag">Motion Sensors</span></div>
       </div>
 
-      <div class="sh-card">
-        <div class="sh-card-header">
-          <div class="sh-icon icon-teal"><i class="fa-solid fa-temperature-half"></i></div>
-          <h3>Climate Control &amp; Comfort</h3>
-        </div>
-        <p>Smart thermostats that learn your schedule, geo-fencing to pre-condition your home before you arrive, and room-by-room temperature management. Cut your energy bills by 20–30% while staying comfortable year-round.</p>
-        <div class="tag-row">
-          <span class="tag tag-blue">Ecobee</span>
-          <span class="tag tag-blue">Nest</span>
-          <span class="tag tag-blue">Honeywell</span>
-          <span class="tag">Geo-fencing</span>
-          <span class="tag">Energy Reports</span>
-        </div>
+      <div class="card">
+        <div class="sh-hd"><div class="ic ic-teal"><i class="fa-solid fa-temperature-half"></i></div><h3>Climate Control</h3></div>
+        <p>Smart thermostats with geo-fencing and room-by-room control. Cut energy bills 20–30%.</p>
+        <div class="tags"><span class="tag tag-b">Ecobee</span><span class="tag tag-b">Nest</span><span class="tag">Geo-fencing</span><span class="tag">Energy Reports</span></div>
       </div>
 
-      <div class="sh-card">
-        <div class="sh-card-header">
-          <div class="sh-icon icon-purple"><i class="fa-solid fa-shield-halved"></i></div>
-          <h3>Smart Security &amp; Access</h3>
-        </div>
-        <p>Full home security integration: video doorbells, IP cameras with local and cloud recording, smart door locks with PIN codes, fingerprint, and app access. Get real-time alerts and see who's at your door from anywhere in the world.</p>
-        <div class="tag-row">
-          <span class="tag tag-blue">Ring / Reolink</span>
-          <span class="tag tag-blue">Hikvision</span>
-          <span class="tag tag-blue">Schlage Encode</span>
-          <span class="tag">Yale Assure</span>
-          <span class="tag">NVR Setup</span>
-        </div>
+      <div class="card">
+        <div class="sh-hd"><div class="ic ic-purple"><i class="fa-solid fa-shield-halved"></i></div><h3>Smart Security</h3></div>
+        <p>IP cameras, video doorbells, smart locks, and alarm integration. Real-time alerts from anywhere.</p>
+        <div class="tags"><span class="tag tag-b">Ring / Reolink</span><span class="tag tag-b">Hikvision</span><span class="tag">Schlage</span><span class="tag">NVR Setup</span></div>
       </div>
 
-      <div class="sh-card">
-        <div class="sh-card-header">
-          <div class="sh-icon icon-blue"><i class="fa-solid fa-tv"></i></div>
-          <h3>Home Entertainment &amp; AV</h3>
-        </div>
-        <p>Whole-home audio and video distribution. Multi-room Sonos setups, 4K TV wall mounts, projector/screen installs, HDMI matrix switching, and Dolby Atmos home theater design. One remote (or your voice) controls it all.</p>
-        <div class="tag-row">
-          <span class="tag tag-blue">Sonos</span>
-          <span class="tag tag-blue">Denon / Yamaha</span>
-          <span class="tag tag-blue">Apple TV</span>
-          <span class="tag">4K HDMI Matrix</span>
-          <span class="tag">Home Theater</span>
-        </div>
+      <div class="card">
+        <div class="sh-hd"><div class="ic ic-blue"><i class="fa-solid fa-tv"></i></div><h3>Home Entertainment</h3></div>
+        <p>Multi-room audio, 4K video distribution, home theater design, and one-remote or voice control.</p>
+        <div class="tags"><span class="tag tag-b">Sonos</span><span class="tag tag-b">Denon / Yamaha</span><span class="tag">4K Matrix</span><span class="tag">Apple TV</span></div>
       </div>
 
-      <div class="sh-card">
-        <div class="sh-card-header">
-          <div class="sh-icon icon-green"><i class="fa-solid fa-microphone"></i></div>
-          <h3>Voice &amp; App Control</h3>
-        </div>
-        <p>Everything controllable from one app — or just your voice. I integrate all your devices into a single, cohesive platform so you never juggle five separate apps. Works with Alexa, Google Assistant, Siri Shortcuts, and Control4 touch panels.</p>
-        <div class="tag-row">
-          <span class="tag tag-blue">Amazon Alexa</span>
-          <span class="tag tag-blue">Google Home</span>
-          <span class="tag tag-blue">Apple HomeKit</span>
-          <span class="tag">Home Assistant</span>
-          <span class="tag">Control4</span>
-        </div>
+      <div class="card">
+        <div class="sh-hd"><div class="ic ic-green"><i class="fa-solid fa-microphone"></i></div><h3>Voice &amp; App Control</h3></div>
+        <p>All devices in one app — or just your voice. No more juggling five separate apps.</p>
+        <div class="tags"><span class="tag tag-b">Alexa</span><span class="tag tag-b">Google Home</span><span class="tag">HomeKit</span><span class="tag">Control4</span></div>
       </div>
 
-      <div class="sh-card">
-        <div class="sh-card-header">
-          <div class="sh-icon icon-slate"><i class="fa-solid fa-solar-panel"></i></div>
-          <h3>Energy Management &amp; EV</h3>
-        </div>
-        <p>Monitor whole-home energy usage in real time, automate high-draw appliances to off-peak hours, and integrate EV charger scheduling. Works alongside solar inverters and battery backup systems to maximize savings.</p>
-        <div class="tag-row">
-          <span class="tag tag-blue">Sense Monitor</span>
-          <span class="tag tag-blue">Emporia Vue</span>
-          <span class="tag tag-blue">ChargePoint</span>
-          <span class="tag">Tesla Wall Connector</span>
-          <span class="tag">Solar Integration</span>
-        </div>
+      <div class="card">
+        <div class="sh-hd"><div class="ic ic-slate"><i class="fa-solid fa-solar-panel"></i></div><h3>Energy &amp; EV</h3></div>
+        <p>Real-time energy monitoring, off-peak automation, EV charger scheduling, and solar integration.</p>
+        <div class="tags"><span class="tag tag-b">Sense Monitor</span><span class="tag tag-b">ChargePoint</span><span class="tag">Solar</span></div>
       </div>
 
-      <div class="sh-card">
-        <div class="sh-card-header">
-          <div class="sh-icon icon-teal"><i class="fa-solid fa-droplet"></i></div>
-          <h3>Smart Irrigation &amp; Garden</h3>
-        </div>
-        <p>Weather-smart irrigation controllers that skip watering when rain is forecast and adjust schedules based on local weather data. Leak sensors for water shutoff, pool automation, and outdoor lighting scenes.</p>
-        <div class="tag-row">
-          <span class="tag tag-blue">Rachio</span>
-          <span class="tag tag-blue">RainBird</span>
-          <span class="tag">Leak Detection</span>
-          <span class="tag">Pool Automation</span>
-        </div>
+      <div class="card">
+        <div class="sh-hd"><div class="ic ic-teal"><i class="fa-solid fa-droplet"></i></div><h3>Smart Irrigation</h3></div>
+        <p>Weather-aware watering schedules, leak detection, pool automation, and outdoor lighting scenes.</p>
+        <div class="tags"><span class="tag tag-b">Rachio</span><span class="tag tag-b">RainBird</span><span class="tag">Leak Detection</span></div>
       </div>
 
-      <div class="sh-card">
-        <div class="sh-card-header">
-          <div class="sh-icon icon-amber"><i class="fa-solid fa-garage"></i></div>
-          <h3>Garage, Gates &amp; Shades</h3>
-        </div>
-        <p>Smart garage door openers with open/close notifications and auto-close timers. Motorized window shades integrated with lighting scenes and sunrise/sunset schedules. Gate intercom systems with camera and remote access.</p>
-        <div class="tag-row">
-          <span class="tag tag-blue">myQ</span>
-          <span class="tag tag-blue">Somfy</span>
-          <span class="tag tag-blue">Lutron Serena</span>
-          <span class="tag">Gate Integration</span>
-        </div>
+      <div class="card">
+        <div class="sh-hd"><div class="ic ic-amber"><i class="fa-solid fa-garage"></i></div><h3>Garage, Gates &amp; Shades</h3></div>
+        <p>Smart openers, auto-close timers, motorized shades, and gate intercom with camera access.</p>
+        <div class="tags"><span class="tag tag-b">myQ</span><span class="tag tag-b">Somfy</span><span class="tag">Lutron Serena</span></div>
+      </div>
+
+      <div class="card">
+        <div class="sh-hd"><div class="ic ic-blue"><i class="fa-solid fa-bell"></i></div><h3>Sensors &amp; Alerts</h3></div>
+        <p>Door/window sensors, leak detectors, smoke, CO, and custom automation triggers throughout your home.</p>
+        <div class="tags"><span class="tag tag-b">Aqara</span><span class="tag tag-b">Zigbee</span><span class="tag">Z-Wave</span><span class="tag">Notifications</span></div>
       </div>
 
     </div>
-
-    <div style="margin-top: 2.5rem;">
-      <div class="highlight-box">
-        <div class="highlight-box-icon"><i class="fa-solid fa-code-branch"></i></div>
-        <div class="highlight-box-text">
-          <h3>Open-Source Friendly: Home Assistant</h3>
-          <p>I specialize in Home Assistant — the most powerful, privacy-first smart home platform. No monthly fees, local processing, and unlimited customization. I can migrate you from proprietary platforms or build from scratch on a dedicated server in your home.</p>
-        </div>
-        <a href="#contact" class="btn btn-outline"><i class="fa-solid fa-arrow-right"></i> Ask Me About It</a>
+    <div class="hl-box">
+      <i class="fa-solid fa-code-branch"></i>
+      <div class="hl-text">
+        <h3>Open-Source: Home Assistant</h3>
+        <p>Privacy-first, no monthly fees, local processing, unlimited customization. I build or migrate you to Home Assistant on a dedicated server in your home.</p>
       </div>
+      <a href="#contact" class="btn btn-outline"><i class="fa-solid fa-arrow-right"></i> Ask Me</a>
     </div>
   </div>
 </section>
 
-<!-- IT SERVICES DEEP DIVE -->
-<section class="section" id="it-services">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag"><i class="fa-solid fa-server"></i> IT Services</div>
+<!-- IT SERVICES -->
+<section class="sec" id="it-services">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="sec-tag"><i class="fa-solid fa-server"></i> IT Services</div>
       <h2>Business &amp; Home Office IT</h2>
-      <p>Enterprise-level IT services scaled for small businesses, remote workers, and home offices. Proactive, not reactive.</p>
+      <p>Enterprise-level services scaled for small businesses and home offices. Proactive, not reactive.</p>
     </div>
-    <div class="it-grid">
+    <div class="grid-3">
 
-      <div class="it-card">
-        <div class="service-icon-wrap icon-blue"><i class="fa-solid fa-wifi"></i></div>
+      <div class="card it-card">
+        <div class="ic ic-blue"><i class="fa-solid fa-wifi"></i></div>
         <h3>Network Design &amp; Wi-Fi</h3>
-        <p>Dead zones eliminated. I design and deploy enterprise-grade Wi-Fi using Ubiquiti UniFi, Cisco Meraki, or Eero Pro. Separate VLANs for IoT, guests, and work devices keep everything secure and fast.</p>
-        <ul>
-          <li>Wi-Fi 6 / 6E access point installation</li>
-          <li>VLAN segmentation</li>
-          <li>Firewall &amp; router config</li>
-          <li>ISP failover / load balancing</li>
-        </ul>
+        <p>Enterprise-grade Wi-Fi with no dead zones. VLANs for IoT, guests, and work.</p>
+        <ul><li>Wi-Fi 6 / 6E AP installation</li><li>VLAN segmentation</li><li>Firewall &amp; router config</li><li>ISP failover</li></ul>
       </div>
 
-      <div class="it-card">
-        <div class="service-icon-wrap icon-purple"><i class="fa-solid fa-lock"></i></div>
+      <div class="card it-card">
+        <div class="ic ic-purple"><i class="fa-solid fa-lock"></i></div>
         <h3>Cybersecurity</h3>
-        <p>Protect your home and business from threats. I audit your current setup, harden your network, and implement layered defenses against ransomware, phishing, and intrusions.</p>
-        <ul>
-          <li>Security audits &amp; vulnerability scans</li>
-          <li>DNS filtering (NextDNS / Pi-hole)</li>
-          <li>VPN setup for remote access</li>
-          <li>Password manager rollout</li>
-          <li>Multi-factor authentication</li>
-        </ul>
+        <p>Layered defenses against ransomware, phishing, and intrusions.</p>
+        <ul><li>Security audits &amp; scans</li><li>DNS filtering (NextDNS / Pi-hole)</li><li>VPN for remote access</li><li>MFA rollout</li></ul>
       </div>
 
-      <div class="it-card">
-        <div class="service-icon-wrap icon-green"><i class="fa-solid fa-cloud"></i></div>
+      <div class="card it-card">
+        <div class="ic ic-green"><i class="fa-solid fa-cloud"></i></div>
         <h3>Cloud Migration</h3>
-        <p>Move your business to the cloud the right way. I handle Microsoft 365 or Google Workspace migrations, data migrations, and hybrid setups — with zero data loss and minimal downtime.</p>
-        <ul>
-          <li>Microsoft 365 / Google Workspace</li>
-          <li>Email &amp; data migration</li>
-          <li>Azure / AWS setup</li>
-          <li>OneDrive / SharePoint rollout</li>
-        </ul>
+        <p>Microsoft 365 or Google Workspace — zero data loss, minimal downtime.</p>
+        <ul><li>M365 / Google Workspace</li><li>Email &amp; data migration</li><li>Azure / AWS setup</li><li>SharePoint / OneDrive</li></ul>
       </div>
 
-      <div class="it-card">
-        <div class="service-icon-wrap icon-amber"><i class="fa-solid fa-hard-drive"></i></div>
-        <h3>Backup &amp; Disaster Recovery</h3>
-        <p>The 3-2-1 backup rule implemented for you: 3 copies of your data, on 2 different media, with 1 offsite. I set up automated backups and test restores so you're never caught off guard.</p>
-        <ul>
-          <li>NAS (Synology / QNAP) setup</li>
-          <li>Cloud backup (Backblaze / Azure)</li>
-          <li>Automated backup schedules</li>
-          <li>Disaster recovery planning</li>
-        </ul>
+      <div class="card it-card">
+        <div class="ic ic-amber"><i class="fa-solid fa-hard-drive"></i></div>
+        <h3>Backup &amp; Recovery</h3>
+        <p>3-2-1 backup strategy: automated, tested, and offsite.</p>
+        <ul><li>NAS (Synology / QNAP)</li><li>Cloud backup (Backblaze)</li><li>Automated schedules</li><li>DR planning</li></ul>
       </div>
 
-      <div class="it-card">
-        <div class="service-icon-wrap icon-teal"><i class="fa-solid fa-headset"></i></div>
+      <div class="card it-card">
+        <div class="ic ic-teal"><i class="fa-solid fa-headset"></i></div>
         <h3>Managed IT Support</h3>
-        <p>I become your on-call IT department. Remote monitoring, patch management, helpdesk support, and proactive maintenance — so issues are caught before they cause problems.</p>
-        <ul>
-          <li>Remote monitoring &amp; alerts</li>
-          <li>Patch management</li>
-          <li>Help desk support</li>
-          <li>Monthly health reports</li>
-        </ul>
+        <p>Your on-call IT department — monitoring, patching, and helpdesk.</p>
+        <ul><li>Remote monitoring (24/7)</li><li>Patch management</li><li>Helpdesk support</li><li>Monthly health reports</li></ul>
       </div>
 
-      <div class="it-card">
-        <div class="service-icon-wrap icon-slate"><i class="fa-solid fa-desktop"></i></div>
+      <div class="card it-card">
+        <div class="ic ic-slate"><i class="fa-solid fa-desktop"></i></div>
         <h3>Hardware &amp; Workstations</h3>
-        <p>PC builds, laptop setups, workstation upgrades, and peripheral configuration. I source, configure, and deploy the right hardware for your needs — and recycle or repurpose the old stuff responsibly.</p>
-        <ul>
-          <li>Custom PC &amp; workstation builds</li>
-          <li>Multi-monitor setups</li>
-          <li>Printer / peripheral config</li>
-          <li>Old hardware recycling</li>
-        </ul>
+        <p>Custom builds, multi-monitor setups, and peripheral config.</p>
+        <ul><li>Custom PC builds</li><li>Multi-monitor setups</li><li>Printer / peripheral config</li><li>Hardware recycling</li></ul>
       </div>
 
     </div>
@@ -580,176 +433,130 @@
 </section>
 
 <!-- PROCESS -->
-<section class="section section-alt" id="process">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag"><i class="fa-solid fa-list-check"></i> How It Works</div>
+<section class="sec sec-alt" id="process">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="sec-tag"><i class="fa-solid fa-list-check"></i> Process</div>
       <h2>Simple, Transparent Process</h2>
-      <p>No surprises. Here's exactly what working with me looks like from first call to finished project.</p>
     </div>
-    <div class="process-steps">
-      <div class="step">
-        <div class="step-num">1</div>
+    <div class="grid-5">
+      <div class="card step">
+        <div class="step-n">1</div>
         <h3>Free Consultation</h3>
-        <p>We chat for 30 minutes — in person or via video call. I learn about your goals, your current setup, pain points, and budget. No obligation, no sales pitch.</p>
+        <p>30-min call to learn your goals, current setup, and budget. No obligation.</p>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
+      <div class="card step">
+        <div class="step-n">2</div>
         <h3>Custom Proposal</h3>
-        <p>I send a detailed written proposal within 48 hours: scope, recommended products, timeline, and fixed pricing. Everything itemized — no hidden fees.</p>
+        <p>Detailed written proposal in 48hrs — itemized, fixed pricing, no hidden fees.</p>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
+      <div class="card step">
+        <div class="step-n">3</div>
         <h3>Installation Day</h3>
-        <p>I handle everything. Clean cable management, careful mounting, thorough testing. Most installs are completed in a single day with no disruption to your routine.</p>
+        <p>I handle everything. Clean install, thorough testing, same-day completion.</p>
       </div>
-      <div class="step">
-        <div class="step-num">4</div>
+      <div class="card step">
+        <div class="step-n">4</div>
         <h3>Training &amp; Handoff</h3>
-        <p>I walk you through your new system in person, set up every family member's phone, and leave you with a plain-English reference guide.</p>
+        <p>In-person walkthrough, every device set up, plain-English reference guide.</p>
       </div>
-      <div class="step">
-        <div class="step-num">5</div>
+      <div class="card step">
+        <div class="step-n">5</div>
         <h3>Ongoing Support</h3>
-        <p>Remote support is just a text away. Monthly check-ins, firmware updates, and easy expansion as your needs grow. I'm a long-term partner, not a one-time vendor.</p>
+        <p>Remote support via text. Monthly check-ins, updates, easy expansion.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- WHY ME -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag"><i class="fa-solid fa-star"></i> Why Choose Me</div>
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="sec-tag"><i class="fa-solid fa-star"></i> Why Choose Me</div>
       <h2>The One-Person Advantage</h2>
-      <p>Unlike big integrators with subcontractors and project managers, you work directly with me — the person who designs, installs, and supports your system.</p>
+      <p>You work directly with me — the person who designs, installs, and supports your system.</p>
     </div>
-    <div class="why-grid">
-      <div class="why-card">
-        <i class="fa-solid fa-person-chalkboard"></i>
-        <h3>Single Point of Contact</h3>
-        <p>You always talk to me directly. No call centers, no ticketing queues, no passing you around between departments.</p>
-      </div>
-      <div class="why-card">
-        <i class="fa-solid fa-tag"></i>
-        <h3>Transparent, Fixed Pricing</h3>
-        <p>Every proposal is itemized and fixed. You know exactly what you're paying before any work begins. No change orders for scope I should have planned.</p>
-      </div>
-      <div class="why-card">
-        <i class="fa-solid fa-graduation-cap"></i>
-        <h3>Vendor-Neutral Advice</h3>
-        <p>I'm not a dealer for any single brand. I recommend what's actually best for your situation, not whatever earns the highest commission.</p>
-      </div>
-      <div class="why-card">
-        <i class="fa-solid fa-clock"></i>
-        <h3>Fast Response Times</h3>
-        <p>When something needs attention, I respond same-day. Emergencies get a call within the hour. No waiting days for a callback.</p>
-      </div>
-      <div class="why-card">
-        <i class="fa-solid fa-arrows-to-dot"></i>
-        <h3>Whole-Home Thinking</h3>
-        <p>I see the full picture — networking, automation, security, and AV all affect each other. Systems I build are designed to work together, not fight each other.</p>
-      </div>
-      <div class="why-card">
-        <i class="fa-solid fa-shield-check"></i>
-        <h3>Privacy &amp; Security First</h3>
-        <p>I prefer local-first solutions where possible. Your data stays in your home, not in a cloud subscription that could disappear tomorrow.</p>
-      </div>
+    <div class="grid-4">
+      <div class="card why-card"><i class="fa-solid fa-person-chalkboard"></i><h3>Single Point of Contact</h3><p>No call centers, no queues. You always reach me directly.</p></div>
+      <div class="card why-card"><i class="fa-solid fa-tag"></i><h3>Fixed, Transparent Pricing</h3><p>Every proposal itemized. You know the cost before work begins.</p></div>
+      <div class="card why-card"><i class="fa-solid fa-graduation-cap"></i><h3>Vendor-Neutral Advice</h3><p>I recommend what's best for you, not what earns me commission.</p></div>
+      <div class="card why-card"><i class="fa-solid fa-clock"></i><h3>Fast Response</h3><p>Same-day responses. Emergencies get a call within the hour.</p></div>
+      <div class="card why-card"><i class="fa-solid fa-arrows-to-dot"></i><h3>Whole-Home Thinking</h3><p>Networking, automation, security, and AV designed to work together.</p></div>
+      <div class="card why-card"><i class="fa-solid fa-shield-check"></i><h3>Privacy First</h3><p>Local-first solutions. Your data stays in your home, not the cloud.</p></div>
     </div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag"><i class="fa-solid fa-quote-left"></i> Testimonials</div>
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="sec-tag"><i class="fa-solid fa-quote-left"></i> Testimonials</div>
       <h2>What Clients Say</h2>
     </div>
-    <div class="testimonials-grid">
-      <div class="testimonial">
+    <div class="grid-t">
+      <div class="card testimonial">
         <div class="stars">★★★★★</div>
-        <blockquote>"Michael completely transformed our home. We went from four separate apps for lights, security, thermostat, and cameras to a single Home Assistant setup that just works. He was patient teaching us how to use it and has been available whenever we had questions."</blockquote>
-        <div class="testimonial-author">
-          <div class="avatar av-blue">JR</div>
-          <div>
-            <div class="name">James R.</div>
-            <div class="role">Homeowner, Hoboken NJ</div>
-          </div>
-        </div>
+        <blockquote>"Michael transformed our home. Four separate apps became one Home Assistant setup that just works. Patient, available, and thorough."</blockquote>
+        <div class="t-author"><div class="av av-b">JR</div><div><div class="t-name">James R.</div><div class="t-role">Homeowner, Hoboken NJ</div></div></div>
       </div>
-      <div class="testimonial">
+      <div class="card testimonial">
         <div class="stars">★★★★★</div>
-        <blockquote>"We had constant Wi-Fi dead zones in our office and security concerns about remote work. Michael redesigned our entire network, set up proper VLANs, and moved us to Microsoft 365. Night and day difference. He explained everything clearly and finished ahead of schedule."</blockquote>
-        <div class="testimonial-author">
-          <div class="avatar av-teal">SK</div>
-          <div>
-            <div class="name">Sarah K.</div>
-            <div class="role">Owner, Small Accounting Firm</div>
-          </div>
-        </div>
+        <blockquote>"Redesigned our office network, set up VLANs, and migrated us to M365. Night and day difference. Finished ahead of schedule."</blockquote>
+        <div class="t-author"><div class="av av-t">SK</div><div><div class="t-name">Sarah K.</div><div class="t-role">Owner, Accounting Firm</div></div></div>
       </div>
-      <div class="testimonial">
+      <div class="card testimonial">
         <div class="stars">★★★★★</div>
-        <blockquote>"The smart lighting and Sonos multi-room audio Michael installed have genuinely changed how we use our home. The Lutron shades with sunrise automation are something I didn't know I needed until I had them. Exceptional attention to detail."</blockquote>
-        <div class="testimonial-author">
-          <div class="avatar av-purple">DM</div>
-          <div>
-            <div class="name">Dana M.</div>
-            <div class="role">Homeowner, Jersey City NJ</div>
-          </div>
-        </div>
+        <blockquote>"Smart lighting, Sonos, and Lutron shades changed how we live. The sunrise automation is something I didn't know I needed. Exceptional detail."</blockquote>
+        <div class="t-author"><div class="av av-p">DM</div><div><div class="t-name">Dana M.</div><div class="t-role">Homeowner, Jersey City NJ</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section class="section" id="pricing">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag"><i class="fa-solid fa-tag"></i> Pricing</div>
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="sec-tag"><i class="fa-solid fa-tag"></i> Pricing</div>
       <h2>Simple, Honest Pricing</h2>
-      <p>Hardware is quoted separately at cost. These are labor and service rates — no markups on equipment, no surprise add-ons.</p>
+      <p>Hardware quoted separately at cost. No equipment markups, no surprise add-ons.</p>
     </div>
-    <div class="pricing-grid">
-      <div class="pricing-card">
+    <div class="grid-p">
+      <div class="price-card">
         <h3>Starter</h3>
-        <div class="price">$125<span>/hr</span></div>
+        <div class="price-num">$125<span>/hr</span></div>
         <div class="price-note">Hourly consulting &amp; installs</div>
         <ul>
           <li><i class="fa-solid fa-check"></i> Single-device or small setup</li>
           <li><i class="fa-solid fa-check"></i> Router / Wi-Fi config</li>
           <li><i class="fa-solid fa-check"></i> Smart device onboarding</li>
           <li><i class="fa-solid fa-check"></i> 30-day follow-up support</li>
-          <li><i class="fa-solid fa-check"></i> Remote support included</li>
         </ul>
         <a href="#contact" class="btn btn-outline btn-full">Book an Hour</a>
       </div>
-
-      <div class="pricing-card featured">
-        <div class="featured-badge">Most Popular</div>
+      <div class="price-card feat">
+        <div class="feat-badge">Most Popular</div>
         <h3>Whole-Home Project</h3>
-        <div class="price">Custom<span></span></div>
+        <div class="price-num">Custom</div>
         <div class="price-note">Fixed-price proposal — no surprises</div>
         <ul>
           <li><i class="fa-solid fa-check"></i> Full home assessment</li>
           <li><i class="fa-solid fa-check"></i> Lighting, climate, security &amp; AV</li>
           <li><i class="fa-solid fa-check"></i> Network design &amp; installation</li>
-          <li><i class="fa-solid fa-check"></i> Home Assistant or Control4 setup</li>
+          <li><i class="fa-solid fa-check"></i> Home Assistant or Control4</li>
           <li><i class="fa-solid fa-check"></i> In-person training</li>
           <li><i class="fa-solid fa-check"></i> 90-day support included</li>
         </ul>
         <a href="#contact" class="btn btn-primary btn-full">Get a Free Quote</a>
       </div>
-
-      <div class="pricing-card">
+      <div class="price-card">
         <h3>Managed IT Retainer</h3>
-        <div class="price">$299<span>/mo</span></div>
-        <div class="price-note">For small businesses &amp; home offices</div>
+        <div class="price-num">$299<span>/mo</span></div>
+        <div class="price-note">Small businesses &amp; home offices</div>
         <ul>
-          <li><i class="fa-solid fa-check"></i> Remote monitoring (24/7 alerts)</li>
+          <li><i class="fa-solid fa-check"></i> Remote monitoring (24/7)</li>
           <li><i class="fa-solid fa-check"></i> Patch &amp; update management</li>
           <li><i class="fa-solid fa-check"></i> Up to 4 hrs helpdesk/mo</li>
           <li><i class="fa-solid fa-check"></i> Monthly security report</li>
@@ -762,59 +569,34 @@
 </section>
 
 <!-- CONTACT -->
-<section class="section section-alt" id="contact">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag"><i class="fa-solid fa-envelope"></i> Contact</div>
+<section class="sec sec-alt" id="contact">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="sec-tag"><i class="fa-solid fa-envelope"></i> Contact</div>
       <h2>Let's Talk About Your Project</h2>
-      <p>Free 30-minute consultation — no pressure, no obligation. Just tell me what you're trying to accomplish.</p>
+      <p>Free 30-minute consultation — no pressure, no obligation.</p>
     </div>
     <div class="contact-grid">
       <div class="contact-info">
         <h3>Reach Out Directly</h3>
-        <p>Based in the Jersey City / Hudson County area. Available for on-site work throughout NJ and NYC. Remote IT consulting available nationwide.</p>
+        <p>Based in Jersey City / Hudson County. On-site throughout NJ and NYC. Remote IT consulting nationwide.</p>
         <div class="contact-links">
-          <a href="mailto:michael.zagame@gmail.com" class="contact-link">
-            <i class="fa-solid fa-envelope"></i>
-            michael.zagame@gmail.com
-          </a>
-          <a href="tel:+19734009579" class="contact-link">
-            <i class="fa-solid fa-phone"></i>
-            (973) 400-9579
-          </a>
-          <a href="https://linkedin.com/in/michaelzagame" class="contact-link" target="_blank" rel="noopener">
-            <i class="fa-brands fa-linkedin"></i>
-            linkedin.com/in/michaelzagame
-          </a>
-          <a href="https://github.com/scammy37" class="contact-link" target="_blank" rel="noopener">
-            <i class="fa-brands fa-github"></i>
-            github.com/scammy37
-          </a>
-          <a href="https://scammy37.github.io/jcpl-dashboard" class="contact-link" target="_blank" rel="noopener">
-            <i class="fa-solid fa-book"></i>
-            JCPL Dashboard Project
-          </a>
+          <a href="mailto:michael.zagame@gmail.com" class="c-link"><i class="fa-solid fa-envelope"></i> michael.zagame@gmail.com</a>
+          <a href="tel:+19734009579" class="c-link"><i class="fa-solid fa-phone"></i> (973) 400-9579</a>
+          <a href="https://linkedin.com/in/michaelzagame" class="c-link" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/michaelzagame</a>
+          <a href="https://github.com/scammy37" class="c-link" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> github.com/scammy37</a>
+          <a href="https://scammy37.github.io/jcpl-dashboard" class="c-link" target="_blank" rel="noopener"><i class="fa-solid fa-book"></i> JCPL Dashboard Project</a>
         </div>
       </div>
-
       <form class="contact-form" onsubmit="handleSubmit(event)">
         <div class="form-row">
-          <div class="form-field">
-            <label for="fname">First name</label>
-            <input type="text" id="fname" name="fname" placeholder="John" required>
-          </div>
-          <div class="form-field">
-            <label for="lname">Last name</label>
-            <input type="text" id="lname" name="lname" placeholder="Smith">
-          </div>
+          <div class="ff"><label for="fn">First name</label><input type="text" id="fn" placeholder="John" required></div>
+          <div class="ff"><label for="ln">Last name</label><input type="text" id="ln" placeholder="Smith"></div>
         </div>
-        <div class="form-field">
-          <label for="email">Email address</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required>
-        </div>
-        <div class="form-field">
-          <label for="service">Service interested in</label>
-          <select id="service" name="service">
+        <div class="ff"><label for="em">Email</label><input type="email" id="em" placeholder="you@example.com" required></div>
+        <div class="ff">
+          <label for="svc">Service interested in</label>
+          <select id="svc">
             <option value="">Select a service…</option>
             <option>Smart Home Design</option>
             <option>Home Automation</option>
@@ -827,38 +609,31 @@
             <option>Not sure — need advice</option>
           </select>
         </div>
-        <div class="form-field">
-          <label for="message">Tell me about your project</label>
-          <textarea id="message" name="message" placeholder="Describe what you're looking to accomplish, your current setup, and any specific challenges you're facing…"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-full">
-          <i class="fa-solid fa-paper-plane"></i> Send Message
-        </button>
+        <div class="ff"><label for="msg">Message</label><textarea id="msg" placeholder="Describe your project or questions…"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-full"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
       </form>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand">
         <div class="logo">Michael<span>.</span>Zagame</div>
-        <p>IT Consultant &amp; Smart Home Specialist serving the Jersey City / NYC metro area and remote clients nationwide.</p>
+        <p>IT Consultant &amp; Smart Home Specialist · Jersey City / NYC metro &amp; nationwide remote.</p>
       </div>
-      <div class="footer-col">
+      <div class="ft-col">
         <h4>Smart Home</h4>
         <ul>
           <li><a href="#smart-home">Lighting &amp; Climate</a></li>
           <li><a href="#smart-home">Smart Security</a></li>
-          <li><a href="#smart-home">Home Entertainment</a></li>
+          <li><a href="#smart-home">Entertainment</a></li>
           <li><a href="#smart-home">Voice Control</a></li>
-          <li><a href="#smart-home">Energy Management</a></li>
           <li><a href="#smart-home">Home Assistant</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="ft-col">
         <h4>IT Services</h4>
         <ul>
           <li><a href="#it-services">Network &amp; Wi-Fi</a></li>
@@ -868,10 +643,10 @@
           <li><a href="#it-services">Backup &amp; Recovery</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
+      <div class="ft-col">
+        <h4>Links</h4>
         <ul>
-          <li><a href="#process">How It Works</a></li>
+          <li><a href="#process">Process</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a href="https://scammy37.github.io/jcpl-dashboard" target="_blank">JCPL Dashboard</a></li>
@@ -879,32 +654,26 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="ft-bot">
       <p>© 2026 Michael Zagame · IT Consultant &amp; Smart Home Specialist · Jersey City, NJ</p>
-      <div class="social-links">
-        <a href="https://linkedin.com/in/michaelzagame" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="https://github.com/scammy37" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="mailto:michael.zagame@gmail.com" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      <div class="soc">
+        <a href="https://linkedin.com/in/michaelzagame" class="soc-a" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/scammy37" class="soc-a" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="mailto:michael.zagame@gmail.com" class="soc-a" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-  function handleSubmit(e) {
+  function handleSubmit(e){
     e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    btn.innerHTML = '<i class="fa-solid fa-check"></i> Message sent!';
-    btn.style.background = '#16a34a';
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
-      btn.style.background = '';
-      btn.disabled = false;
-      e.target.reset();
-    }, 3500);
+    const btn=e.target.querySelector('button[type="submit"]');
+    btn.innerHTML='<i class="fa-solid fa-check"></i> Sent!';
+    btn.style.background='#16a34a';
+    btn.disabled=true;
+    setTimeout(()=>{btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Send Message';btn.style.background='';btn.disabled=false;e.target.reset();},3000);
   }
 </script>
-
 </body>
 </html>
