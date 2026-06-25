@@ -215,7 +215,10 @@
     }
 
     /* ─── SERVICE TABLES ─────────────────────────────── */
-    .svc-table { width:100%; border-collapse:collapse; }
+    .svc-table { width:100%; border-collapse:collapse; table-layout:fixed; }
+    .svc-table col.c-svc  { width:18%; }
+    .svc-table col.c-desc { width:47%; }
+    .svc-table col.c-tags { width:35%; }
     .svc-table th {
       text-align:left; font-size:0.65rem; font-weight:600;
       letter-spacing:0.08em; text-transform:uppercase;
@@ -498,11 +501,12 @@
         <p>Complete smart home systems built from scratch — or upgrades to what you already have.</p>
       </div>
       <table class="svc-table">
+        <colgroup><col class="c-svc"><col class="c-desc"><col class="c-tags"></colgroup>
         <thead>
           <tr>
-            <th style="width:200px">Service</th>
+            <th>Service</th>
             <th>Description</th>
-            <th style="width:280px">Compatible With</th>
+            <th>Compatible With</th>
           </tr>
         </thead>
         <tbody>
@@ -571,11 +575,12 @@
         <p>Enterprise-level IT services scaled for small businesses and home offices. Proactive, not reactive.</p>
       </div>
       <table class="svc-table">
+        <colgroup><col class="c-svc"><col class="c-desc"><col class="c-tags"></colgroup>
         <thead>
           <tr>
-            <th style="width:200px">Service</th>
+            <th>Service</th>
             <th>Description</th>
-            <th style="width:280px">Stack</th>
+            <th>Stack</th>
           </tr>
         </thead>
         <tbody>
