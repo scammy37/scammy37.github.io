@@ -779,6 +779,7 @@
     if (json.success) {
       result.style.cssText = 'display:block;margin-top:0.75rem;padding:0.75rem 1rem;border-radius:6px;font-size:0.82rem;font-weight:500;background:rgba(63,185,80,0.12);border:1px solid rgba(63,185,80,0.3);color:#3fb950;';
       result.innerHTML = '<i class="fa-solid fa-circle-check"></i> Your message has been sent! I\'ll be in touch shortly.';
+      result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       this.reset();
       btn.innerHTML = '<i class="fa-solid fa-check"></i> Sent!';
       btn.style.background = '#3fb950';
