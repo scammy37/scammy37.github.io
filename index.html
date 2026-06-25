@@ -270,10 +270,11 @@
     .hl-t p  { font-size:0.78rem; color:var(--muted); line-height:1.55; }
 
     /* ─── PROCESS STEPS ──────────────────────────────── */
-    .steps { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:var(--gap); }
+    .steps { display:grid; grid-template-columns:repeat(5,1fr); gap:var(--gap); }
+    @media(max-width:700px) { .steps { grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); } }
     .step {
       background:var(--bg2); border:1px solid var(--bd);
-      border-radius:var(--r); padding:var(--cp);
+      border-radius:var(--r); padding:1.25rem;
     }
     .step-num {
       width:28px; height:28px; border-radius:50%;
@@ -322,11 +323,12 @@
     .pcrd-btn.pri:hover { background:#79b8ff; }
 
     /* ─── TESTIMONIALS ───────────────────────────────── */
-    .tgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:var(--gap); }
-    .tcrd { background:var(--bg2); border:1px solid var(--bd); border-radius:var(--r); padding:var(--cp); }
-    .stars { color:var(--amber); font-size:0.72rem; margin-bottom:0.5rem; letter-spacing:0.1em; }
-    .tcrd blockquote { font-size:0.78rem; color:var(--text); line-height:1.65; margin-bottom:0.75rem; font-style:italic; }
-    .tauth { display:flex; align-items:center; gap:0.6rem; padding-top:0.75rem; border-top:1px solid var(--bd); }
+    .tgrid { display:grid; grid-template-columns:repeat(5,1fr); gap:var(--gap); }
+    @media(max-width:900px) { .tgrid { grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); } }
+    .tcrd { background:var(--bg2); border:1px solid var(--bd); border-radius:var(--r); padding:0.75rem; }
+    .stars { color:var(--amber); font-size:0.68rem; margin-bottom:0.4rem; letter-spacing:0.1em; }
+    .tcrd blockquote { font-size:0.72rem; color:var(--text); line-height:1.55; margin-bottom:0.6rem; font-style:italic; }
+    .tauth { display:flex; align-items:center; gap:0.5rem; padding-top:0.6rem; border-top:1px solid var(--bd); }
     .tav {
       width:28px; height:28px; border-radius:50%; flex-shrink:0;
       display:flex; align-items:center; justify-content:center;
