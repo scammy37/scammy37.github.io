@@ -258,7 +258,8 @@
     /* ─── PRICING ────────────────────────────────────── */
     .price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap); }
     @media(max-width:700px) { .price-grid { grid-template-columns:1fr; } }
-    .pcrd { background:var(--bg2); border:1px solid var(--bd); border-radius:var(--r); padding:1.25rem; position:relative; }
+    .pcrd { background:var(--bg2); border:1px solid var(--bd); border-radius:var(--r); padding:1.25rem; position:relative; display:flex; flex-direction:column; }
+    .pcrd ul { flex:1; }
     .pcrd.feat { border-color:var(--blue); border-width:1.5px; }
     .feat-badge {
       position:absolute; top:-10px; left:1rem;
@@ -291,10 +292,10 @@
     /* ─── TESTIMONIALS ───────────────────────────────── */
     .tgrid { display:grid; grid-template-columns:repeat(5,1fr); gap:var(--gap); }
     @media(max-width:900px) { .tgrid { grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); } }
-    .tcrd { background:var(--bg2); border:1px solid var(--bd); border-radius:var(--r); padding:0.875rem; }
+    .tcrd { background:var(--bg2); border:1px solid var(--bd); border-radius:var(--r); padding:0.875rem; display:flex; flex-direction:column; }
     .stars { color:var(--amber); font-size:0.68rem; margin-bottom:0.4rem; letter-spacing:0.1em; }
-    .tcrd blockquote { font-size:0.73rem; color:var(--text); line-height:1.6; margin-bottom:0.65rem; font-style:italic; }
-    .tauth { display:flex; align-items:center; gap:0.5rem; padding-top:0.65rem; border-top:1px solid var(--bd); }
+    .tcrd blockquote { font-size:0.73rem; color:var(--text); line-height:1.6; margin-bottom:0.65rem; font-style:italic; flex:1; }
+    .tauth { display:flex; align-items:center; gap:0.5rem; padding-top:0.65rem; border-top:1px solid var(--bd); margin-top:auto; }
     .tav {
       width:28px; height:28px; border-radius:50%; flex-shrink:0;
       display:flex; align-items:center; justify-content:center;
