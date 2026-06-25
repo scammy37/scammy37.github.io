@@ -147,28 +147,31 @@
       font-size:0.9rem; color:var(--muted); line-height:1.7;
       margin-bottom:1.25rem;
     }
-    .hero-btns { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.75rem; }
-    .hero-stats {
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:0;
-      border:1px solid var(--bd);
-      border-radius:var(--r);
-      overflow:hidden;
+    .hero-btns { display:flex; gap:0.5rem; flex-wrap:wrap; }
+    .hero-layout {
+      display:grid; grid-template-columns:1fr auto;
+      gap:2rem; align-items:start;
     }
-    @media(max-width:600px) { .hero-stats { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:700px) { .hero-layout { grid-template-columns:1fr; } }
+    .hero-stats {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:0; border:1px solid var(--bd);
+      border-radius:var(--r); overflow:hidden; flex-shrink:0;
+    }
     .hstat {
-      padding:0.875rem 1.25rem;
+      padding:0.75rem 1.1rem;
       border-right:1px solid var(--bd);
+      border-bottom:1px solid var(--bd);
       background:var(--bg2);
     }
-    .hstat:last-child { border-right:none; }
+    .hstat:nth-child(2n) { border-right:none; }
+    .hstat:nth-child(3), .hstat:nth-child(4) { border-bottom:none; }
     .hstat strong {
-      display:block; font-size:1.4rem; font-weight:700;
+      display:block; font-size:1.25rem; font-weight:700;
       color:var(--hi); font-family:'JetBrains Mono',monospace;
       line-height:1; margin-bottom:0.2rem;
     }
-    .hstat span { font-size:0.7rem; color:var(--muted); }
+    .hstat span { font-size:0.68rem; color:var(--muted); }
 
     /* ─── PLATFORMS STRIP ────────────────────────────── */
     .plat-strip {
@@ -451,20 +454,24 @@
 
     <!-- HERO -->
     <div class="hero" id="overview">
-      <div class="hero-eyebrow">IT Consultant &amp; Smart Home Specialist — NJ / NYC Metro</div>
-      <div class="hero-name">Michael Zagame</div>
-      <div class="hero-sub">I help homeowners and small businesses modernize their technology — from intelligent home automation to secure enterprise-grade IT infrastructure. One consultant, direct accountability, real results.</div>
-      <div class="hero-btns">
-        <a href="#contact"     class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Free Consultation</a>
-        <a href="#smart-home"  class="btn"><i class="fa-solid fa-house-signal"></i> Smart Home</a>
-        <a href="#it-services" class="btn"><i class="fa-solid fa-server"></i> IT Services</a>
-        <a href="#pricing"     class="btn"><i class="fa-solid fa-tag"></i> Pricing</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hstat"><strong>25+</strong><span>Years Experience</span></div>
-        <div class="hstat"><strong>50+</strong><span>Homes Automated</span></div>
-        <div class="hstat"><strong>100%</strong><span>Client Satisfaction</span></div>
-        <div class="hstat"><strong>24/7</strong><span>Remote Support</span></div>
+      <div class="hero-layout">
+        <div>
+          <div class="hero-eyebrow">IT Consultant &amp; Smart Home Specialist — NJ / NYC Metro</div>
+          <div class="hero-name">Michael Zagame</div>
+          <div class="hero-sub">I help homeowners and small businesses modernize their technology — from intelligent home automation to secure enterprise-grade IT infrastructure. One consultant, direct accountability, real results.</div>
+          <div class="hero-btns">
+            <a href="#contact"     class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Free Consultation</a>
+            <a href="#smart-home"  class="btn"><i class="fa-solid fa-house-signal"></i> Smart Home</a>
+            <a href="#it-services" class="btn"><i class="fa-solid fa-server"></i> IT Services</a>
+            <a href="#pricing"     class="btn"><i class="fa-solid fa-tag"></i> Pricing</a>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat"><strong>25+</strong><span>Years Experience</span></div>
+          <div class="hstat"><strong>50+</strong><span>Homes Automated</span></div>
+          <div class="hstat"><strong>100%</strong><span>Client Satisfaction</span></div>
+          <div class="hstat"><strong>24/7</strong><span>Remote Support</span></div>
+        </div>
       </div>
     </div>
 
