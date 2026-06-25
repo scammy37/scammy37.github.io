@@ -69,6 +69,18 @@
       font-family:'JetBrains Mono',monospace;
     }
     .sb-avail::before { content:''; width:6px; height:6px; background:var(--green); border-radius:50%; flex-shrink:0; }
+    .sb-cta { padding:0.75rem var(--pad); border-bottom:1px solid var(--bd); display:flex; flex-direction:column; gap:0.4rem; }
+    .sb-cta a { display:flex; align-items:center; justify-content:center; gap:0.4rem; font-size:0.75rem; font-weight:500; padding:0.35rem; border-radius:var(--r); text-decoration:none; transition:background 0.12s, color 0.12s; }
+    .sb-cta .cta-phone { background:var(--bg3); border:1px solid var(--bd2); color:var(--text); }
+    .sb-cta .cta-phone:hover { border-color:var(--blue); color:var(--blue); }
+    .sb-cta .cta-contact { background:var(--blue); border:1px solid var(--blue); color:#0d1117; font-weight:600; }
+    .sb-cta .cta-contact:hover { background:#79b8ff; }
+    .sb-stats { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--bd); }
+    .sb-stat { padding:0.6rem var(--pad); border-right:1px solid var(--bd); border-bottom:1px solid var(--bd); }
+    .sb-stat:nth-child(2n) { border-right:none; }
+    .sb-stat:nth-child(3), .sb-stat:nth-child(4) { border-bottom:none; }
+    .sb-stat strong { display:block; font-size:1.1rem; font-weight:700; color:var(--hi); font-family:'JetBrains Mono',monospace; line-height:1; }
+    .sb-stat span { font-size:0.62rem; color:var(--muted); }
 
     .sb-section {
       padding:1rem var(--pad) 0.3rem;
@@ -98,19 +110,6 @@
 
     /* ─── MAIN ───────────────────────────────────────── */
     main { min-width:0; overflow-x:hidden; }
-
-    /* ─── TOP BAR ────────────────────────────────────── */
-    .topbar {
-      position:sticky; top:0; z-index:50;
-      background:var(--bg2); border-bottom:1px solid var(--bd);
-      padding:0 var(--pad); height:44px;
-      display:flex; align-items:center; justify-content:space-between;
-    }
-    .tb-path {
-      font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted);
-    }
-    .tb-path span { color:var(--blue); }
-    .tb-btns { display:flex; align-items:center; gap:0.5rem; }
 
     /* ─── BUTTONS ────────────────────────────────────── */
     .btn {
@@ -415,6 +414,18 @@
       <div class="sb-avail">Available for projects</div>
     </div>
 
+    <div class="sb-cta">
+      <a href="tel:+19734009579" class="cta-phone"><i class="fa-solid fa-phone"></i> (973) 400-9579</a>
+      <a href="#contact" class="cta-contact"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
+    </div>
+
+    <div class="sb-stats">
+      <div class="sb-stat"><strong>25+</strong><span>Years Exp.</span></div>
+      <div class="sb-stat"><strong>50+</strong><span>Homes Done</span></div>
+      <div class="sb-stat"><strong>100%</strong><span>Satisfaction</span></div>
+      <div class="sb-stat"><strong>24/7</strong><span>Support</span></div>
+    </div>
+
     <div class="sb-section">Navigation</div>
     <a href="#overview"     class="sb-link active"><i class="fa-solid fa-house"></i> Overview</a>
     <a href="#smart-home"   class="sb-link"><i class="fa-solid fa-house-signal"></i> Smart Home</a>
@@ -443,35 +454,16 @@
   <!-- ═══ MAIN ═══════════════════════════════════════════ -->
   <main>
 
-    <!-- TOP BAR -->
-    <div class="topbar">
-      <div class="tb-path"><span>~</span>/michael-zagame/<span>portfolio</span></div>
-      <div class="tb-btns">
-        <a href="tel:+19734009579" class="btn btn-sm"><i class="fa-solid fa-phone"></i> (973) 400-9579</a>
-        <a href="#contact" class="btn btn-primary btn-sm"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
-      </div>
-    </div>
-
     <!-- HERO -->
     <div class="hero" id="overview">
-      <div class="hero-layout">
-        <div>
-          <div class="hero-eyebrow">IT Consultant &amp; Smart Home Specialist — NJ / NYC Metro</div>
-          <div class="hero-name">Michael Zagame</div>
-          <div class="hero-sub">I help homeowners and small businesses modernize their technology — from intelligent home automation to secure enterprise-grade IT infrastructure. One consultant, direct accountability, real results.</div>
-          <div class="hero-btns">
-            <a href="#contact"     class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Free Consultation</a>
-            <a href="#smart-home"  class="btn"><i class="fa-solid fa-house-signal"></i> Smart Home</a>
-            <a href="#it-services" class="btn"><i class="fa-solid fa-server"></i> IT Services</a>
-            <a href="#pricing"     class="btn"><i class="fa-solid fa-tag"></i> Pricing</a>
-          </div>
-        </div>
-        <div class="hero-stats">
-          <div class="hstat"><strong>25+</strong><span>Years Experience</span></div>
-          <div class="hstat"><strong>50+</strong><span>Homes Automated</span></div>
-          <div class="hstat"><strong>100%</strong><span>Client Satisfaction</span></div>
-          <div class="hstat"><strong>24/7</strong><span>Remote Support</span></div>
-        </div>
+      <div class="hero-eyebrow">IT Consultant &amp; Smart Home Specialist — NJ / NYC Metro</div>
+      <div class="hero-name">Michael Zagame</div>
+      <div class="hero-sub">With over 25 years in IT and smart home technology, I help homeowners and small businesses modernize the way they live and work. From designing intelligent home automation systems — lighting, climate, security, AV, and energy — to building enterprise-grade IT infrastructure including networking, cybersecurity, cloud migration, and managed support. Every project is handled personally, with clear communication, fixed pricing, and real accountability. No subcontractors, no surprises.</div>
+      <div class="hero-btns">
+        <a href="#contact"     class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Free Consultation</a>
+        <a href="#smart-home"  class="btn"><i class="fa-solid fa-house-signal"></i> Smart Home</a>
+        <a href="#it-services" class="btn"><i class="fa-solid fa-server"></i> IT Services</a>
+        <a href="#pricing"     class="btn"><i class="fa-solid fa-tag"></i> Pricing</a>
       </div>
     </div>
 
