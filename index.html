@@ -259,7 +259,6 @@
     .price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap); }
     @media(max-width:700px) { .price-grid { grid-template-columns:1fr; } }
     .pcrd { background:var(--bg2); border:1px solid var(--bd); border-radius:var(--r); padding:1.25rem; position:relative; display:flex; flex-direction:column; }
-    .pcrd ul { flex:1; }
     .pcrd.feat { border-color:var(--blue); border-width:1.5px; }
     .feat-badge {
       position:absolute; top:-10px; left:1rem;
@@ -275,7 +274,7 @@
     }
     .pcrd-price small { font-size:0.78rem; font-weight:400; color:var(--muted); }
     .pcrd-note { font-size:0.7rem; color:var(--muted); margin-bottom:1rem; padding-bottom:1rem; border-bottom:1px solid var(--bd); }
-    .pcrd ul { list-style:none; margin-bottom:1rem; display:flex; flex-direction:column; gap:0.35rem; }
+    .pcrd ul { list-style:none; margin-bottom:1rem; display:flex; flex-direction:column; gap:0.35rem; flex:1; }
     .pcrd ul li { font-size:0.78rem; color:var(--text); display:flex; align-items:flex-start; gap:0.45rem; }
     .pcrd ul li i { color:var(--green); font-size:0.68rem; margin-top:0.2rem; flex-shrink:0; }
     .pcrd-btn {
