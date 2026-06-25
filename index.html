@@ -714,7 +714,7 @@
         </div>
         <div class="ff"><label>Message</label><textarea name="message" placeholder="Describe your project or what you're looking to accomplish…"></textarea></div>
         <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
-        <p id="form-result" style="font-size:0.8rem;margin-top:0.5rem;display:none;"></p>
+        <div id="form-result" style="display:none;margin-top:0.75rem;padding:0.75rem 1rem;border-radius:6px;font-size:0.82rem;font-weight:500;"></div>
       </form>
     </div>
 
@@ -777,14 +777,15 @@
     const json = await res.json();
     result.style.display = 'block';
     if (json.success) {
-      result.style.color = '#3fb950';
-      result.textContent = '✓ Message sent! I'll be in touch shortly.';
+      result.style.cssText = 'display:block;margin-top:0.75rem;padding:0.75rem 1rem;border-radius:6px;font-size:0.82rem;font-weight:500;background:rgba(63,185,80,0.12);border:1px solid rgba(63,185,80,0.3);color:#3fb950;';
+      result.innerHTML = '<i class="fa-solid fa-circle-check"></i> Your message has been sent! I\'ll be in touch shortly.';
       this.reset();
       btn.innerHTML = '<i class="fa-solid fa-check"></i> Sent!';
-      setTimeout(() => { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message'; result.style.display='none'; }, 4000);
+      btn.style.background = '#3fb950';
+      setTimeout(() => { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message'; btn.style.background=''; result.style.display='none'; }, 5000);
     } else {
-      result.style.color = '#f85149';
-      result.textContent = 'Something went wrong — please email michael.zagame@gmail.com directly.';
+      result.style.cssText = 'display:block;margin-top:0.75rem;padding:0.75rem 1rem;border-radius:6px;font-size:0.82rem;font-weight:500;background:rgba(248,81,73,0.12);border:1px solid rgba(248,81,73,0.3);color:#f85149;';
+      result.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Something went wrong — please email <a href="mailto:michael.zagame@gmail.com" style="color:#f85149">michael.zagame@gmail.com</a> directly.';
       btn.disabled = false;
       btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
     }
